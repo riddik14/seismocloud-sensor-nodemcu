@@ -11,7 +11,7 @@
 #endif
 
 // #define DONT_UPDATE
-// #define DEBUG
+#define DEBUG
 
 #ifdef IS_ESP
 // Configurazione LED per NodeMCU/ESP8266
@@ -23,7 +23,7 @@
 #include <SPI.h>
 #include <EEPROM.h>
 #include <Ethernet.h>
-#include <PubSubClient.h>
+#include <TLSPubSubClient.h>
 
 #define VERSION     "1.20"
 

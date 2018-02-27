@@ -1,10 +1,11 @@
 
 #include "api.h"
+#include "certificate.h"
 
 #ifdef IS_ESP
-WiFiClient ethernetClient;
+WiFiClientSecure ethernetClient;
 #endif
-PubSubClient mqttClient(ethernetClient);
+PubSubClient mqttClient(ethernetClient, dst_root_ca_x3_bin_crt, dst_root_ca_x3_bin_crt_len);
 
 unsigned long lastNTPTime = 0;
 unsigned long lastNTPMillis = 0;
@@ -110,7 +111,8 @@ boolean apiConnect() {
 
   // END Will message
 
-  mqttClient.setServer("mqtt.seismocloud.com", 1883);
+  mqttClient.setServer("mqtt.seismocloud.com", 443);
+  mqttClient.setCertHostName("mqtt.seismocloud.com");
   mqttClient.setCallback(apiCallback);
   mqttClient.connect((char*)(buffer + 2), "embedded", "embedded", "server", 0, 0, (char*)buffer);
 
@@ -145,6 +147,9 @@ boolean apiConnect() {
       break;
     case MQTT_CONNECTED:
       Debugln(F("[MQTT] Connected"));
+      break;
+    case MQTT_TLS_BAD_SERVER_CREDENTIALS:
+      Debugln(F("[MQTT] TLS Secure connection failed"));
       break;
   }
 #endif
