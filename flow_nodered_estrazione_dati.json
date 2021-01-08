@@ -1,0 +1,512 @@
+[
+    {
+        "id": "196d25e2.b63c4a",
+        "type": "mqtt in",
+        "z": "a0afa304.4d0ce",
+        "name": "",
+        "topic": "sensor/mac_addr_tuo_sensore/quake",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "10c4fe66.6dd312",
+        "x": 150,
+        "y": 140,
+        "wires": [
+            [
+                "80930b1.7a2ebf8",
+                "fb4ee303.f645a",
+                "52cb0e78.6ad61"
+            ]
+        ]
+    },
+    {
+        "id": "80930b1.7a2ebf8",
+        "type": "split",
+        "z": "a0afa304.4d0ce",
+        "name": "",
+        "splt": ";",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 350,
+        "y": 140,
+        "wires": [
+            [
+                "2197bc91.dad094",
+                "52cb0e78.6ad61"
+            ]
+        ]
+    },
+    {
+        "id": "61e08ce1.a74174",
+        "type": "debug",
+        "z": "a0afa304.4d0ce",
+        "name": "out time",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1260,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "2197bc91.dad094",
+        "type": "change",
+        "z": "a0afa304.4d0ce",
+        "name": "to number",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "$number(msg.payload)\t",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 510,
+        "y": 140,
+        "wires": [
+            [
+                "7da5927c.275edc",
+                "b3c9aa34.e45d78"
+            ]
+        ]
+    },
+    {
+        "id": "7da5927c.275edc",
+        "type": "switch",
+        "z": "a0afa304.4d0ce",
+        "name": "route",
+        "property": "parts.index",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "3",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 4,
+        "x": 650,
+        "y": 140,
+        "wires": [
+            [
+                "a2fbcf1.2e7123",
+                "64bccf07.bcff4",
+                "61e08ce1.a74174",
+                "ab2fae17.d62bc"
+            ],
+            [
+                "32419ab.81b9566"
+            ],
+            [
+                "907bd5c5.737e78"
+            ],
+            [
+                "7dd895dd.9047dc"
+            ]
+        ]
+    },
+    {
+        "id": "a124fffa.8cd92",
+        "type": "debug",
+        "z": "a0afa304.4d0ce",
+        "name": "out x",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1150,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "68d5db69.40db24",
+        "type": "debug",
+        "z": "a0afa304.4d0ce",
+        "name": "out y",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1150,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "8e294090.21d8b",
+        "type": "debug",
+        "z": "a0afa304.4d0ce",
+        "name": "out z",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1150,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "d0a7f66c.e595a8",
+        "type": "comment",
+        "z": "a0afa304.4d0ce",
+        "name": "split",
+        "info": "Split comma separated string into separated messages.\nValue placed to msg.payload\nValue type will be still string.\n\nThere will be 4 messages out of this split node\n\nFor each msg also given a property \"parts\". \nIt will be used later on.",
+        "x": 350,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "e8ed1d6c.de1cd",
+        "type": "comment",
+        "z": "a0afa304.4d0ce",
+        "name": "convert",
+        "info": "Convert the value of msg.payload to the number using JSONata expression.\n",
+        "x": 490,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "925b0954.91a188",
+        "type": "comment",
+        "z": "a0afa304.4d0ce",
+        "name": "route",
+        "info": "Route every message to differet output by using switch node.\nAs property \"parts\" has been given to each message, we can use its \n\"index\" property to find out proper output\n\n",
+        "x": 650,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "fb4ee303.f645a",
+        "type": "debug",
+        "z": "a0afa304.4d0ce",
+        "name": "source data",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 310,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "52cb0e78.6ad61",
+        "type": "debug",
+        "z": "a0afa304.4d0ce",
+        "name": "spltted",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 450,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "b3c9aa34.e45d78",
+        "type": "debug",
+        "z": "a0afa304.4d0ce",
+        "name": "converted",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 620,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "6c95c779.b022e8",
+        "type": "mqtt out",
+        "z": "a0afa304.4d0ce",
+        "name": "",
+        "topic": "sensor/terremoto/ora",
+        "qos": "0",
+        "retain": "",
+        "broker": "2e7878ed.3bdb08",
+        "x": 1060,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "cb7a4188.b0365",
+        "type": "mqtt out",
+        "z": "a0afa304.4d0ce",
+        "name": "",
+        "topic": "sensor/terremoto/x",
+        "qos": "0",
+        "retain": "",
+        "broker": "2e7878ed.3bdb08",
+        "x": 970,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "a7b81401.07ca48",
+        "type": "mqtt out",
+        "z": "a0afa304.4d0ce",
+        "name": "",
+        "topic": "sensor/terremoto/y",
+        "qos": "0",
+        "retain": "",
+        "broker": "2e7878ed.3bdb08",
+        "x": 970,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "71de083a.c6f9e8",
+        "type": "mqtt out",
+        "z": "a0afa304.4d0ce",
+        "name": "",
+        "topic": "sensor/terremoto/z",
+        "qos": "0",
+        "retain": "",
+        "broker": "2e7878ed.3bdb08",
+        "x": 970,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "32419ab.81b9566",
+        "type": "function",
+        "z": "a0afa304.4d0ce",
+        "name": "",
+        "func": "msg.payload = Number(msg.payload.toFixed(6));\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 800,
+        "y": 120,
+        "wires": [
+            [
+                "a124fffa.8cd92",
+                "cb7a4188.b0365"
+            ]
+        ]
+    },
+    {
+        "id": "907bd5c5.737e78",
+        "type": "function",
+        "z": "a0afa304.4d0ce",
+        "name": "",
+        "func": "msg.payload = Number(msg.payload.toFixed(6));\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 800,
+        "y": 180,
+        "wires": [
+            [
+                "a7b81401.07ca48",
+                "68d5db69.40db24"
+            ]
+        ]
+    },
+    {
+        "id": "7dd895dd.9047dc",
+        "type": "function",
+        "z": "a0afa304.4d0ce",
+        "name": "",
+        "func": "msg.payload = Number(msg.payload.toFixed(6));\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 800,
+        "y": 240,
+        "wires": [
+            [
+                "71de083a.c6f9e8",
+                "8e294090.21d8b"
+            ]
+        ]
+    },
+    {
+        "id": "8f8afcc4.c4092",
+        "type": "comment",
+        "z": "a0afa304.4d0ce",
+        "name": "round",
+        "info": "Convert the value of msg.payload to the number using JSONata expression.\n",
+        "x": 971.6666870117188,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "3b660d25.0755c2",
+        "type": "mqtt in",
+        "z": "a0afa304.4d0ce",
+        "name": "",
+        "topic": "sensor/sensor/mac_addr_tuo_sensore/quake/threshold",
+        "qos": "0",
+        "datatype": "auto",
+        "broker": "10c4fe66.6dd312",
+        "x": 200,
+        "y": 260,
+        "wires": [
+            [
+                "e83d5741.8a75b8",
+                "73e227b5.c904b8"
+            ]
+        ]
+    },
+    {
+        "id": "73e227b5.c904b8",
+        "type": "mqtt out",
+        "z": "a0afa304.4d0ce",
+        "name": "",
+        "topic": "sensor/terremoto/threshold",
+        "qos": "0",
+        "retain": "",
+        "broker": "2e7878ed.3bdb08",
+        "x": 400,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "e83d5741.8a75b8",
+        "type": "debug",
+        "z": "a0afa304.4d0ce",
+        "name": "out 5",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "a2fbcf1.2e7123",
+        "type": "mqtt out",
+        "z": "a0afa304.4d0ce",
+        "name": "",
+        "topic": "sensor/terremoto/unixtime",
+        "qos": "0",
+        "retain": "",
+        "broker": "2e7878ed.3bdb08",
+        "x": 1000,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "64bccf07.bcff4",
+        "type": "moment",
+        "z": "a0afa304.4d0ce",
+        "name": "",
+        "topic": "",
+        "input": "",
+        "inputType": "msg",
+        "inTz": "Europe/Rome",
+        "adjAmount": "0",
+        "adjType": "hours",
+        "adjDir": "add",
+        "format": "DD MM YYYY H:mm:ss",
+        "locale": "IT-it",
+        "output": "",
+        "outputType": "msg",
+        "outTz": "Europe/Rome",
+        "x": 840,
+        "y": 60,
+        "wires": [
+            [
+                "6c95c779.b022e8",
+                "61e08ce1.a74174"
+            ]
+        ]
+    },
+    {
+        "id": "10c4fe66.6dd312",
+        "type": "mqtt-broker",
+        "name": "seismocloud",
+        "broker": "mqtt.seismocloud.com",
+        "port": "1883",
+        "clientid": "nodered_tuonodered",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "2e7878ed.3bdb08",
+        "type": "mqtt-broker",
+        "name": "mio server",
+        "broker": "iptuoservermqtt",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    }
+]
