@@ -6,14 +6,14 @@
 // ************************ BEGIN CONFIG **************************
 
 // This flag will prevent updates - USE ONLY DURING DEVELOPMENT
-// #define DONT_UPDATE
+//define DONT_UPDATE
 
 // On Arduino this flag has no effect if you use avr_boot bootloader (for self-update). You should switch to standard bootloader
-// #define DEBUG
+#define DEBUG
 
-#define LED_RED     D7
-#define LED_YELLOW  D6
-#define LED_GREEN   D5
+#define LED_RED     D8
+#define LED_YELLOW  D7
+#define LED_GREEN   D6
 
 // ************************ END CONFIG **************************
 
@@ -25,7 +25,7 @@
 #define CFGSSID "SeismoCloud"
 
 #define VERSION     "1.30.8"
-#define MODEL       "esp8266"
+#define MODEL       "esp01"
 
 // ******* DEBUG PART
 #ifdef DEBUG
