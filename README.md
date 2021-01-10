@@ -14,24 +14,7 @@ Se si dispone di firewall nella rete, si prega di consentire queste porte (in us
 
 * TCP: 443, 1883
 
-# Descrizione dello stato del LED
 
-I LED possono trovarsi in questi stati diversi (celle vuote significa "OFF"):
-
-| Verde | Giallo | Rosso | Stato
-|:-----:|:------:|:-----:| ------
-| ON    |        |       | Il dispositivo è inattivo e in ascolto
-| ON    | ON     |       | Il dispositivo ha perso la connessione e sta tentando di riconnettersi
-| ON    |        | ON    | È stata rilevata una vibrazione / vibrazione!
-| ON    | ON     | ON    | Il dispositivo si sta collegando alla rete SeismoCloud
-|       | ON     | ON    | Verifica di aggiornamenti o aggiornamenti
-|       | ON     |       | Connessione alla rete Wi-Fi *
-|       |        | ON    | Calibrazione in corso
-
-Alla fine della sequenza di avvio, tutti e tre i LED lampeggeranno rapidamente per segnalare che è OK.
-
-*: Se solo il LED giallo è acceso per più di 10 secondi, NodeMCU è in attesa di
-configurazione della rete Wi-Fi (vedere il capitolo "Come caricare il software")
 
 # Come costruire il dispositivo (hardware)
 
@@ -58,19 +41,10 @@ Collegare questi pin dall'accelerometro MPU6050 alla scheda NodeMCU:
 
 * 3v3: 3v3
 * GND: GND
-* SDA: D1
-* SCL: D2
+* SDA: D4
+* SCL: D3
 
-## Cablaggio LED
 
-Ricorda di mettere un resistore con LED (dopo / prima non è davvero importante) da limitare
-corrente che scorre, altrimenti si potrebbe danneggiare la scheda NodeMCU.
-
-Per impostazione predefinita, i pin LED sono:
-
-* Pin D5: verde
-* Pin D6: giallo
-* Pin D7: rosso
 
 # Come caricare il software
 
