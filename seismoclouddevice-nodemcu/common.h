@@ -9,7 +9,7 @@
 //define DONT_UPDATE
 
 // On Arduino this flag has no effect if you use avr_boot bootloader (for self-update). You should switch to standard bootloader
-#define DEBUG
+//#define DEBUG
 
 #define LED_RED     D8
 #define LED_YELLOW  D7
